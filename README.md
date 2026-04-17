@@ -11,7 +11,7 @@ Your goal is to:
 - Evaluate what your system gets right and wrong
 - Reflect on how this mirrors real world AI recommenders
 
-Replace this paragraph with your own summary of what your version does.
+The program takes in a list of songs with attributes like genre, mood, energy, temp, valence, etc and uses content-based filtering to recommend music.  
 
 ---
 
@@ -22,11 +22,22 @@ Explain your design in plain language.
 Some prompts to answer:
 
 - What features does each `Song` use in your system
-  - For example: genre, mood, energy, tempo
+  - I will be using genre, mood, energy, and acousticness as features and content-based filtering to recommend songs
 - What information does your `UserProfile` store
+  - It will store the songs they listened to fully, what they liked, and the genre they chose
 - How does your `Recommender` compute a score for each song
+  - This is recommended by Claude Code:
+    - score = genre_match (0 or 1)          × 2.0   ← binary, high weight
+      + mood_match  (0 or 1)          × 1.5
+      + energy_closeness              × 1.0   ← 1 - |user.target_energy - song.energy|
+      + acoustic_match                × 0.5   ← if likes_acoustic and acousticness > 0.6
+    , and I think it's a very good scoring system except I will increase the acoustic_match score to 1 because I find myself to care about if a song is acoustic or not a lot. My accoustic scorin system,
+      score = genre_match (0 or 1)          × 2.0   ← binary, high weight
+      + mood_match  (0 or 1)          × 1.5
+      + energy_closeness              × 1.0   ← 1 - |user.target_energy - song.energy|
+      + acoustic_match                × 1.0   ← if likes_acoustic and acousticness > 0.6
 - How do you choose which songs to recommend
-
+  - I'm going to randomly select out of top 3 to add variance. 
 You can include a simple diagram or bullet list if helpful.
 
 ---
