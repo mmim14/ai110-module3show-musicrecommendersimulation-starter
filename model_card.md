@@ -41,7 +41,8 @@ Describe the dataset the model uses.
 Prompts:  
 
 - How many songs are in the catalog  
-- What genres or moods are represented  
+<!-- - What genres or moods are represented  eN
+     -->
 - Did you add or remove data  
 - Are there parts of musical taste missing in the dataset  
 

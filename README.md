@@ -13,11 +13,23 @@ Your goal is to:
 
 The program takes in a list of songs with attributes like genre, mood, energy, temp, valence, etc and uses content-based filtering to recommend music.  
 
+I paraphrased how Claude Code explained recommendation system. 
+
+Recommendation techniques:
+	1. Collaborative Recommendation: (behavioral signals) find users with similar interest and recommend what they enjoyed; 
+		- item-based: uses what users liked before, etc. Uses matrix factorization (SVD, ALS) to find latent patterns in user-item interaction matrices 
+	2. Content-Based Filtering: analyzes the content like audio features (tempo, key, energy, valence), metadata (artist, genre, release year, lyrics sentiment), video signals (thumbnails, transcripts, watch duration)
+
+I will prioritze content-based filtering because it's music recommendation system and the attributes of songs matters most. 
+
 ---
 
 ## How The System Works
 
 Explain your design in plain language.
+
+The program will take in a list of songs as csv file and score the songs using a scoring rule and build a list of songs to recommend based on ranking rules.  
+
 
 Some prompts to answer:
 
