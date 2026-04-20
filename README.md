@@ -28,8 +28,16 @@ I will prioritze content-based filtering because it's music recommendation syste
 
 Explain your design in plain language.
 
-The program will take in a list of songs as csv file and score the songs using a scoring rule and build a list of songs to recommend based on ranking rules.  
+### Algorithm Recipe:
+I'll utilize the user's taste profile to calculate a score for the songs for that user and recommend songs with the highest scores.
 
+#### Design:
+The program takes in user input for their favorite genre, mood, target energy, and whether or not they like acoustic. Then, it uses the information to calculate scores for the songs for the users and should recommend top 10 songs.
+
+*Diagram:* https://mermaid.live/edit#pako:eNpllNtu4jAQhl9l5ItVq6YRAcIhF1210AMt9ET3ZgOq3MQJ1jo2sp1u2cBz7APti63jBAqqJUv2zDf_2DOWCxSJmKAAJUz8jhZYangZzjiYcX4UTrUxzI_h9PQMLsKBYIxEGn4oImHEl7mez3jFXlhkECb4XUiqyWtKuCTzfefw05kJER_4LkOTKCX6lXAi09WB7ypk9BdRrzgSudI02uUcwDcYmnlp5pVFr8OLnLLYHvBRioQysqOvLXETjgWOQQmeKkikyKqlG6n3OumN5UbhlZBAcLSwAFAOEdaYiXQnOLLgbWFvChnW0eL7pnLdlq71iig4abqNNdyFOI5BC1CR2FWlgriAk5I4VB0XZYkORcefop7rfwmZFFXtIGJCmaVSddzExnlwCvhNQQ3FNEng31_w3K_J74vDgsP5_RC2m1IYzqDhdrbnut8_177anVV7MI_IXLoq4wkklGNW1cFc7wN8199V9MEGPBaTLa-2OR63OdYw2rdwsYancCrMq8WM1W19W9X6MVER4THln017simew2eic8lNS5bgNaq4ui3PlpiGQ6qWDK9AU82IUyk6QD6MkWNNBa_5qeVfjsJLHs-PkYNSSWMUaJkTB2VEZrjcoqKkZ0gvSEZmKDDLmCQ4Z3qGZnxjwpaY_xQi20ZKkacLFCSYKbPLlzHWZEhxKnG2s0pzOSIHIucaBV3fsyIoKNAHCpqtntv1On7fa3RbnX6_66CVsfZcr9vzet1OrxzNVmvjoD82red67b7Xajd9r99o-17bdxCJqendpPog7D-x-Q9D5kdj
+![FLowchart](image.png)
+
+The program will take in a list of songs as csv file and score the songs using a scoring rule and build a list of songs to recommend based on ranking rules.  
 
 Some prompts to answer:
 
