@@ -46,10 +46,9 @@ class Recommender:
         # TODO: Implement explanation logic
         return "Explanation placeholder"
 
-# loads songs from the csv file with appropriate data type to later be used in scoring
 def load_songs(csv_path: str) -> List[Dict]:
     """
-    Loads songs from a CSV file.
+    Loads songs from a CSV file with appropriate data type to later be used in scoring
     Required by src/main.py
     """
     songs = []
@@ -69,9 +68,26 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
     Scores a single song against user preferences.
     Required by recommend_songs() and src/main.py
     """
-    # TODO: Implement scoring logic using your Algorithm Recipe from Phase 2.
-    # Expected return format: (score, reasons)
-    return []
+    score = 0.0
+    reasons = []
+
+    if song["genre"] == user_prefs["genre"]:
+        score += 2.0
+        reasons.append(f"genre match ({song['genre']}), +2.0")
+
+    if song["mood"] == user_prefs["mood"]:
+        score += 1.5
+        reasons.append(f"mood match ({song['mood']}), +1.5")
+
+    # the formula subtract the absolute value of the difference between the user_prefs and song energy
+    # from 1. The closer the user_prefs is to song energy the closer it is to 1 
+    energy_closeness = 1 - abs(user_prefs["energy"] - song["energy"])
+    score += energy_closeness * 1.0
+    reasons.append(f"energy closeness {energy_closeness:.2f}, +{energy_closeness:.2f}")
+    if user_prefs["likes_acoustic"] and song["acousticness"] > 0.6:
+        score += 1.0
+        reasons.append(f"acoustic match (acousticness={song['acousticness']}), +1.0")
+    return (score, reasons)
 
 def recommend_songs(user_prefs: Dict, songs: List[Dict], k: int = 5) -> List[Tuple[Dict, float, str]]:
     """
