@@ -51,7 +51,7 @@ Some prompts to answer:
       + mood_match  (0 or 1)          × 1.5
       + energy_closeness              × 1.0   ← 1 - |user.target_energy - song.energy|
       + acoustic_match                × 0.5   ← if likes_acoustic and acousticness > 0.6
-    , and I think it's a very good scoring system except I will increase the acoustic_match score to 1 because I find myself to care about if a song is acoustic or not a lot. My accoustic scorin system,
+    , and I think it's a very good scoring system except I will increase the acoustic_match score to 1 because I find myself to care about if a song is acoustic or not a lot. My accoustic scoring system,
       score = genre_match (0 or 1)          × 2.0   ← binary, high weight
       + mood_match  (0 or 1)          × 1.5
       + energy_closeness              × 1.0   ← 1 - |user.target_energy - song.energy|
@@ -96,6 +96,8 @@ pytest
 You can add more tests in `tests/test_recommender.py`.
 
 ---
+
+I added my response to moder_card.md
 
 ## Experiments You Tried
 
