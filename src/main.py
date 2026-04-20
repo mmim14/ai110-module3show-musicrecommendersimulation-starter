@@ -15,10 +15,12 @@ from recommender import load_songs, recommend_songs
 def main() -> None:
     songs = load_songs("data/songs.csv") 
 
-    # Starter example profile
-    user_prefs = {"genre": "pop", "mood": "happy", "energy": 0.8}
+    print(len(songs))  # in-line test to see songs are loaded correctly 
 
-    recommendations = recommend_songs(user_prefs, songs, k=5)
+    # Starter example profile
+    user_prefs = {"genre": "pop", "mood": "happy", "energy": 0.8, "likes_acoustic":True}
+
+    recommendations = recommend_songs(user_prefs, songs, k=10)
 
     print("\nTop recommendations:\n")
     for rec in recommendations:

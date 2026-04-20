@@ -73,27 +73,32 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
 
     if song["genre"] == user_prefs["genre"]:
         score += 2.0
-        reasons.append(f"genre match ({song['genre']}), +2.0")
+        reasons.append(f"genre match ({song['genre']}) +2.0")
 
     if song["mood"] == user_prefs["mood"]:
         score += 1.5
-        reasons.append(f"mood match ({song['mood']}), +1.5")
+        reasons.append(f"mood match ({song['mood']}) +1.5")
 
     # the formula subtract the absolute value of the difference between the user_prefs and song energy
     # from 1. The closer the user_prefs is to song energy the closer it is to 1 
     energy_closeness = 1 - abs(user_prefs["energy"] - song["energy"])
-    score += energy_closeness * 1.0
-    reasons.append(f"energy closeness {energy_closeness:.2f}, +{energy_closeness:.2f}")
+    score += energy_closeness * 1.25
+    reasons.append(f"energy closeness ({energy_closeness:.2f}) +{energy_closeness:.2f}")
     if user_prefs["likes_acoustic"] and song["acousticness"] > 0.6:
         score += 1.0
-        reasons.append(f"acoustic match (acousticness={song['acousticness']}), +1.0")
+        reasons.append(f"acoustic match (acousticness={song['acousticness']}) +1.0")
     return (score, reasons)
 
-def recommend_songs(user_prefs: Dict, songs: List[Dict], k: int = 5) -> List[Tuple[Dict, float, str]]:
+def recommend_songs(user_prefs: Dict, songs: List[Dict], k: int = 10) -> List[Tuple[Dict, float, str]]:
     """
     Functional implementation of the recommendation logic.
     Required by src/main.py
     """
-    # TODO: Implement scoring and ranking logic
-    # Expected return format: (song_dict, score, explanation)
-    return []
+    scored = []
+    for song in songs:
+        score, reasons = score_song(user_prefs, song)
+        explanation = ", ".join(reasons)
+        scored.append((song, score, explanation))
+    # lambda is an anonymous function that passes each item of scored as x and return the score at index 1
+    scored.sort(key=lambda x: x[1], reverse=True)
+    return scored[:k]
